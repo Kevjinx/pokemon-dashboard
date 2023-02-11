@@ -1,15 +1,16 @@
 // install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/bar
 import { ResponsiveBar } from "@nivo/bar";
+import { barData } from "../data/testBarChart";
+
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-export const MyResponsiveBar = ( data /* see data tab */ ) => (
+export const BarChart = ( data /* see data tab */ ) => (
   <ResponsiveBar
-    data={data}
+    data={barData}
     keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
     indexBy="country"
     margin={{ top: 50, right: 130, bottom: 50, left: 60 }}

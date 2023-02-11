@@ -1,7 +1,6 @@
-import SidebarComponent from "./components/global/Sidebar.jsx";
+import SidebarComponent from "./components/Sidebar.jsx";
 import { Routes, Route } from "react-router-dom";
-import { MyResponsiveBar } from "./charts/BarChart.jsx";
-import { barData } from "./data/testBarChart.js";
+import Bar from "./scene/bar/";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
           <Route path="/" element={<h1>Home</h1>} />
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="/contact" element={<h1>Contact</h1>} />
-          <Route path="/bar" element={<MyResponsiveBar data={barData} />} />
+          <Route path="/bar" element={<Bar />} />
         </Routes>
       </main>
     </div>
