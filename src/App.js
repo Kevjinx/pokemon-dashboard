@@ -1,4 +1,4 @@
-import SidebarComponent from "./components/Sidebar.jsx";
+import SidebarComponent from "./scene/global/Sidebar.jsx";
 import { Routes, Route } from "react-router-dom";
 import Bar from "./scene/bar/";
 
