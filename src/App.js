@@ -1,36 +1,28 @@
-
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { ColorModeContext, useMode } from './theme';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { ProSidebarProvider } from 'react-pro-sidebar';
-import Topbar from './scene/global/Topbar.jsx';
-import SidebarComponent from "./scene/global/Sidebar.jsx";
-import Bar from "./scene/bar/";
-
+import { Route, Routes } from "react-router-dom";
+import { ColorModeContext, useMode } from "./theme";
+import { CssBaseline, ThemeProvider, Box } from "@mui/material";
+import { ProSidebarProvider } from "react-pro-sidebar";
+import Topbar from "./scene/global/Topbar";
+import Dashboard from "./scene/dashboard";
+import Sidebar from "./scene/global/Sidebar";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
-
-
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
+        {/* reset css to default */}
         <CssBaseline />
-        <div className="App">
+        <div className="app">
           <ProSidebarProvider>
-            <SidebarComponent isSidebar={isSidebar} />
+            <Sidebar />
           </ProSidebarProvider>
-          <main className="content">
-            <Topbar setIsSidebar={setIsSidebar} />
+          <Box className="content" sx={{ width: "100%" }}>
+            <Topbar />
             <Routes>
-              <Route path="/" element={<h1>Home</h1>} />
-              <Route path="/about" element={<h1>About</h1>} />
-              <Route path="/contact" element={<h1>Contact</h1>} />
-              <Route path="/bar" element={<Bar />} />
+              <Route path="/" element={<Dashboard />} />
             </Routes>
-          </main>
+          </Box>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
