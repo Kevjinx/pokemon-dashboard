@@ -18,9 +18,6 @@ const StatsRadarChart = (props) => {
   const options = {
     chart: {
 			type: 'radar',
-      id: "basic-bar",
-    },
-    grid: {
     },
 		plotOptions: {
 			fill: {
@@ -28,8 +25,16 @@ const StatsRadarChart = (props) => {
 				colors: []
 			}
 		},
+    yaxis: {
+      labels: {
+        style: {
+          fontSize: "0px", //'show: false' doesn't work. Workaround: set font size to 0
+        }
+      },
+    },
 		series: [
       {
+        name: "Stats",
         data: getStats(props.data)
       },
     ],
