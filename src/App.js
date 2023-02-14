@@ -5,6 +5,7 @@ import { ProSidebarProvider } from "react-pro-sidebar";
 import Topbar from "./scene/global/Topbar";
 import Dashboard from "./scene/dashboard";
 import Sidebar from "./scene/global/Sidebar";
+import Bar from "./scene/bar";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -21,6 +22,8 @@ function App() {
             <Topbar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/bar" element={<Bar />} />
+
             </Routes>
           </Box>
         </div>
