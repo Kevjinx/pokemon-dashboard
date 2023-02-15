@@ -1,8 +1,6 @@
-import getCandlePromise from "../data/finnhub/index.mjs";
+import getCandlePromise from "../data/finnhub/getCandlePromise.mjs";
 import Chart from "react-apexcharts";
 import { useState, useEffect } from "react";
-
-
 
 
 const PricesCandleStick = () => {
@@ -11,14 +9,11 @@ const PricesCandleStick = () => {
 
   useEffect(() => {
     getCandlePromise(4).then((data) => {
-      parseCandleData(data)
-      setCandleStickData(parseCandleData(data)); // data is an array of objects
+      setCandleStickData(parseCandleData(data));
     });
   }, []);
 
   const parseCandleData = (candleData) => {
-    console.log(candleData)
-    console.log(typeof(candleData))
     let candleDataArray = []
 
     for (let i = 0; i < candleData.t.length; i++) {
@@ -36,8 +31,6 @@ const PricesCandleStick = () => {
 
     return candleDataArray;
   }
-
-
 
   const options = {
     series: [
