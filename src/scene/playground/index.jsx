@@ -1,11 +1,11 @@
-import BasicGrid from "../../components/Prices";
 import { Box } from "@mui/material";
+import PricesCandleStick from "../../components/PricesCandleStick";
 
 const Playground = () => {
   return (
     <Box m="20px">
       <Box height="75vh">
-				<BasicGrid />
+        <PricesCandleStick />
       </Box>
     </Box>
   );
