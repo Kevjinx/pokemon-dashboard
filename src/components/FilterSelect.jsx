@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 
-const BasicSelect = () => {
+const FilterSelect = () => {
   const [filters, setFilters] = useState({
     type: "",
     weakness: "",
@@ -67,4 +67,4 @@ const BasicSelect = () => {
   );
 }
 
-export default BasicSelect;
+export default FilterSelect;
