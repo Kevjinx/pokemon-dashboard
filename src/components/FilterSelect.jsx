@@ -21,7 +21,38 @@ const FilterSelect = () => {
     setFilters({ ...filters, [name]: value });
   };
 
+  const capFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
+  const gridItems = (filter, menuItems) => {
+    return (
+      <Grid item xs>
+        <Box
+          sx={{
+            '& .MuiFormControl-root': {
+              width: '100%'
+            }
+          }}
+        >
+          <FormControl>
+            <InputLabel id={`${filter}-label`}>{capFirstLetter(filter)}</InputLabel>
+            <Select
+              name={filter}
+              labelId={`${filter}-label`}
+              id={`${filter}-select`}
+              value={filters[filter]}
+              onChange={handleFilterChange}
+            >
+              {menuItems.map((item) => (
+                <MenuItem value={item}>{item}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </Grid>
+    );
+  }
 
   return (
     <Grid
@@ -31,67 +62,9 @@ const FilterSelect = () => {
       justifyContent="center"
       alignItems="flex-start"
     >
-      <Grid item xs >
-        <Box
-          sx={{
-            '& .MuiFormControl-root': {
-              width: '100%'
-            }
-          }}
-        >
-          <FormControl>
-            <InputLabel id="type-label">Type</InputLabel>
-            <Select
-              autoWidth={true}
-              name="type"
-              labelId="type-label"
-              id="type-select"
-              value={filters.type}
-              onChange={handleFilterChange}
-            >
-              <MenuItem value="grass">Grass</MenuItem>
-              <MenuItem value="fire">Fire</MenuItem>
-              <MenuItem value="water">Water</MenuItem>
-            </Select>
-          </FormControl>
-
-        </Box>
-      </Grid>
-
-      <Grid item xs>
-        <FormControl>
-          <InputLabel id="weakness-label">Weaknesses</InputLabel>
-          <Select
-            name="weakness"
-            labelId="weakness-label"
-            id="weakness-select"
-            value={filters.weakness}
-            onChange={handleFilterChange}
-          >
-            <MenuItem value="flying">Flying</MenuItem>
-            <MenuItem value="ground">Ground</MenuItem>
-            <MenuItem value="rock">Rock</MenuItem>
-            {/* Add more weakness options as needed */}
-          </Select>
-        </FormControl>
-      </Grid>
-
-      <Grid item xs>
-        <FormControl>
-          <InputLabel id="generation-label">Generation</InputLabel>
-          <Select
-            name="generation"
-            labelId="generation-label"
-            id="generation-select"
-            value={filters.generation}
-            onChange={handleFilterChange}
-          >
-            <MenuItem value="gen1">Gen1</MenuItem>
-            <MenuItem value="gen2">Gen2</MenuItem>
-            <MenuItem value="gen3">Gen3</MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
+      {gridItems("type", ["grass", "fire", "water"])}
+      {gridItems("weakness", ["flying", "ground", "rock"])}
+      {gridItems("generation", ["gen1", "gen2", "gen3"])}
     </Grid>
   );
 };
