@@ -1,4 +1,4 @@
-import pokemonEvolution from '../data/pokemonEvolution.json';
+import pokemonEvolution from '../data/pokeAPI/pokemonEvolution.json';
 
 //recursively get all evolutions
 

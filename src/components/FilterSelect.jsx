@@ -7,12 +7,27 @@ import {
   Box,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import {
+  getPokemonById,
+  getIdsByType,
+  getIdsByAbility,
+  getIdsByGeneration,
+  getAllAbilities,
+  getCommonIds,
+  getIdsByWeakness,
+  abilityList
+} from "../data/pokeAPI/index.mjs";
 
 const FilterSelect = () => {
   const [filters, setFilters] = useState({
     type: "",
     weakness: "",
     generation: "",
+  });
+  const [ids, setIds] = useState({
+    type: [],
+    weakness: [],
+    generation: [],
   });
 
   const handleFilterChange = (event) => {
@@ -21,22 +36,49 @@ const FilterSelect = () => {
     setFilters({ ...filters, [name]: value });
   };
 
-  const capFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  const handleSearchButton = () => {
+    console.log('searching')
+    const commonIds = getCommonIds(ids.type, ids.weakness, ids.generation);
+    console.log('commonIds: ',commonIds)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let newIds = { ...ids };
+      if (filters.type) {
+        newIds.type = await getIdsByType(filters.type);
+      }
+      if (filters.weakness) {
+        newIds.weakness = await getIdsByWeakness(filters.weakness);
+      }
+      if (filters.generation) {
+        newIds.generation = await getIdsByGeneration(filters.generation);
+      }
+      console.log('newids: ',newIds)
+      setIds(newIds);
+    };
+    fetchData().catch(console.error);
+  }, [filters]);
+
+  const capFirstLetter = (string) =>
+    string.charAt(0).toUpperCase() + string.slice(1);
+
+  //getFilterData, locally stored.
 
   const gridItems = (filter, menuItems) => {
     return (
       <Grid item xs>
         <Box
           sx={{
-            '& .MuiFormControl-root': {
-              width: '100%'
-            }
+            "& .MuiFormControl-root": {
+              width: "100%",
+            },
           }}
         >
           <FormControl>
-            <InputLabel id={`${filter}-label`}>{capFirstLetter(filter)}</InputLabel>
+            <InputLabel id={`${filter}-label`}>
+              {capFirstLetter(filter)}
+            </InputLabel>
             <Select
               name={filter}
               labelId={`${filter}-label`}
@@ -45,27 +87,35 @@ const FilterSelect = () => {
               onChange={handleFilterChange}
             >
               {menuItems.map((item) => (
-                <MenuItem value={item}>{item}</MenuItem>
+                <MenuItem key={item} value={item}>
+                  {item}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
         </Box>
       </Grid>
     );
-  }
+  };
 
   return (
-    <Grid
-      container
-      spacing={2}
-      direction="row"
-      justifyContent="center"
-      alignItems="flex-start"
-    >
-      {gridItems("type", ["grass", "fire", "water"])}
-      {gridItems("weakness", ["flying", "ground", "rock"])}
-      {gridItems("generation", ["gen1", "gen2", "gen3"])}
-    </Grid>
+    <div>
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justifyContent="center"
+        alignItems="flex-start"
+      >
+        {gridItems("type", ["grass", "fire", "water"])}
+        {gridItems("weakness", ["flying", "ground", "rock"])}
+        {gridItems("abilities", abilityList)}
+        {gridItems("generation", ["1", "2", "3"])}
+        {gridItems("height", ["Short ", "Grande ", "Venti"])}
+        {gridItems("weight", ["small", "medium", "large"])}
+      </Grid>
+      <button onClick={handleSearchButton}>Search</button>
+    </div>
   );
 };
 

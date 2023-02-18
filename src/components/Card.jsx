@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import pikachuData from '../data/pikachuPokeAPI.json';
+import pikachuData from '../data/pokeAPI/pikachuPokeAPI.json';
 
 const parsePokeData = async (data) => {
   const name = data.name;
@@ -18,9 +18,7 @@ const parsePokeData = async (data) => {
 
   // Make another request to get the Pokemon's species data
   const speciesResponse = await fetch(data.species.url);
-	console.log(data.species.url)
   const speciesData = await speciesResponse.json();
-	console.log(speciesData)
   // Extract the relevant information from the species data object
   const nationalId = speciesData.id;
   const evolutionUrl = speciesData.evolution_chain.url;
