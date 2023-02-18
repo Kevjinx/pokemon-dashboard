@@ -15,7 +15,8 @@ import {
   getAllAbilities,
   getCommonIds,
   getIdsByWeakness,
-  abilityList
+  abilityList,
+  typeList
 } from "../data/pokeAPI/index.mjs";
 
 const FilterSelect = () => {
@@ -107,7 +108,7 @@ const FilterSelect = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        {gridItems("type", ["grass", "fire", "water"])}
+        {gridItems("type", typeList)}
         {gridItems("weakness", ["flying", "ground", "rock"])}
         {gridItems("abilities", abilityList)}
         {gridItems("generation", ["1", "2", "3"])}

@@ -46,17 +46,31 @@ export const getAllAbilities = async () => {
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
-    data.results.map((data) => {
+    data.results.foreach((data) => {
       abilities.push(data.name);
     });
     url = data.next;
   }
-  // fs.writeFile("abilitiesList.json", JSON.stringify(abilities), (err) => {
-  //   if (err) throw err;
-  //   console.log("The file has been saved!");
-  // });
   return abilities;
 };
+
+export const getAllTypes = async () => {
+  let types = [];
+  let url = "https://pokeapi.co/api/v2/type";
+
+  //for pagination
+  while (url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    data.results.foreach((data) => {
+      types.push(data.name); //avoid nested arrays
+    });
+    url = data.next;
+  }
+  return types;
+};
+
 
 
 export const getCommonIds = (...arraysOfPokemonIds) => {

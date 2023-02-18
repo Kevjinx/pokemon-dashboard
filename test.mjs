@@ -51,4 +51,21 @@ const getAllAbilities = async () => {
   });
   return abilities;
 };
-getAllAbilities();
+
+const getAllTypes = async () => {
+  let types = [];
+  let url = "https://pokeapi.co/api/v2/type";
+
+  //for pagination
+  while (url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    data.results.map((data) => {
+      console.log(data)
+      types.push(data.name);
+    });
+    url = data.next;
+  }
+  return types;
+};

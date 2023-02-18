@@ -6,8 +6,10 @@ import {
   getIdsByGeneration,
   getCommonIds,
   getIdsByWeakness,
+  getAllTypes,
 } from "./getData.mjs";
-import { abilityList } from "./abilitiesList.mjs";
+import { abilityList } from "./abilityList.mjs";
+import { typeList } from "./typeList.mjs";
 
 export {
   getPokemonById,
@@ -17,5 +19,7 @@ export {
   getAllAbilities,
   getCommonIds,
   getIdsByWeakness,
-  abilityList
+  getAllTypes,
+  abilityList,
+  typeList,
 };
