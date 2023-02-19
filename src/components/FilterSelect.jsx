@@ -112,9 +112,9 @@ const FilterSelect = () => {
         justifyContent="center"
         alignItems="flex-start"
       >
-        {gridItems("type", typeList)}
-        {gridItems("weakness", typeList)}
-        {gridItems("abilities", abilityList)}
+        {gridItems("type", ['all', ...typeList])}
+        {gridItems("weakness",  ['all', ...typeList])}
+        {gridItems("abilities",  ['all', ...abilityList])}
         {gridItems("generation", ["1", "2", "3"])}
         {gridItems("height", ["Short ", "Grande ", "Venti"])}
         {gridItems("weight", ["small", "medium", "large"])}

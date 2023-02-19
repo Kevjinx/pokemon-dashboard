@@ -4,6 +4,7 @@ const parsePokemonIdFromUrl = (url) => {
 }
 
 export const getIdsByType = async (type) => {
+  if (type === 'all') return []
   const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
   const data = await response.json();
   const ids = data.pokemon.map((pokemon) => parsePokemonIdFromUrl(pokemon.pokemon.url));
@@ -11,6 +12,7 @@ export const getIdsByType = async (type) => {
 }
 
 export const getIdsByAbility = async (ability) => {
+  if (ability === 'all') return []
   const response = await fetch(`https://pokeapi.co/api/v2/ability/${ability}`);
   const data = await response.json();
   const ids = data.pokemon.map((pokemon) => parsePokemonIdFromUrl(pokemon.pokemon.url));
@@ -19,6 +21,8 @@ export const getIdsByAbility = async (ability) => {
 }
 
 export const getIdsByWeakness = async (weakness) => {
+  if (weakness === 'all') return []
+
   const response = await fetch(`https://pokeapi.co/api/v2/type/${weakness}`);
   const data = await response.json();
   const ids = data.pokemon.map((pokemon) => parsePokemonIdFromUrl(pokemon.pokemon.url));
