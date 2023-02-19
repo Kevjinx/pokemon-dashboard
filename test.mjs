@@ -1,5 +1,6 @@
 import fs from "fs";
 import fetch from "node-fetch";
+
 // (async function() {
 //   // Make a request to the PokeAPI to get the Pokemon's data
 //   const response = await fetch('https://pokeapi.co/api/v2/evolution-chain/10/');
@@ -62,7 +63,7 @@ const getAllTypes = async () => {
     const data = await response.json();
     console.log(data);
     data.results.map((data) => {
-      console.log(data)
+      console.log(data);
       types.push(data.name);
     });
     url = data.next;

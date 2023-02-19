@@ -8,28 +8,30 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
-  getPokemonById,
   getIdsByType,
   getIdsByAbility,
   getIdsByGeneration,
-  getAllAbilities,
   getCommonIds,
   getIdsByWeakness,
   abilityList,
-  typeList
+  typeList,
 } from "../data/pokeAPI/index.mjs";
+import DisplaySearch from "./DisplaySearch";
 
 const FilterSelect = () => {
   const [filters, setFilters] = useState({
     type: "",
     weakness: "",
     generation: "",
+    ability: "",
   });
   const [ids, setIds] = useState({
     type: [],
     weakness: [],
     generation: [],
+    ability: [],
   });
+  const [commonIds, setCommonIds] = useState([]);
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
@@ -38,10 +40,9 @@ const FilterSelect = () => {
   };
 
   const handleSearchButton = () => {
-    console.log('searching')
-    const commonIds = getCommonIds(ids.type, ids.weakness, ids.generation);
-    console.log('commonIds: ',commonIds)
-  }
+    const idArrays = [ids.type, ids.weakness, ids.generation, ids.ability];
+    setCommonIds(getCommonIds(idArrays));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +56,11 @@ const FilterSelect = () => {
       if (filters.generation) {
         newIds.generation = await getIdsByGeneration(filters.generation);
       }
-      console.log('newids: ',newIds)
+      if (filters.ability) {
+        newIds.ability = await getIdsByAbility(filters.ability);
+      }
+
+      console.log("newids: ", newIds);
       setIds(newIds);
     };
     fetchData().catch(console.error);
@@ -63,8 +68,6 @@ const FilterSelect = () => {
 
   const capFirstLetter = (string) =>
     string.charAt(0).toUpperCase() + string.slice(1);
-
-  //getFilterData, locally stored.
 
   const gridItems = (filter, menuItems) => {
     return (
@@ -87,6 +90,7 @@ const FilterSelect = () => {
               value={filters[filter]}
               onChange={handleFilterChange}
             >
+              <MenuItem value={`undefined`} />
               {menuItems.map((item) => (
                 <MenuItem key={item} value={item}>
                   {item}
@@ -109,13 +113,16 @@ const FilterSelect = () => {
         alignItems="flex-start"
       >
         {gridItems("type", typeList)}
-        {gridItems("weakness", ["flying", "ground", "rock"])}
+        {gridItems("weakness", typeList)}
         {gridItems("abilities", abilityList)}
         {gridItems("generation", ["1", "2", "3"])}
         {gridItems("height", ["Short ", "Grande ", "Venti"])}
         {gridItems("weight", ["small", "medium", "large"])}
       </Grid>
       <button onClick={handleSearchButton}>Search</button>
+      <div>
+        <DisplaySearch commonIds={commonIds} />
+      </div>
     </div>
   );
 };

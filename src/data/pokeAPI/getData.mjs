@@ -1,6 +1,6 @@
 const parsePokemonIdFromUrl = (url) => {
   const urlParts = url.split('/');
-  return urlParts[urlParts.length - 2];
+  return Number(urlParts[urlParts.length - 2]);
 }
 
 export const getIdsByType = async (type) => {
@@ -14,6 +14,7 @@ export const getIdsByAbility = async (ability) => {
   const response = await fetch(`https://pokeapi.co/api/v2/ability/${ability}`);
   const data = await response.json();
   const ids = data.pokemon.map((pokemon) => parsePokemonIdFromUrl(pokemon.pokemon.url));
+  console.log('ability: ', ids)
   return ids;
 }
 
@@ -73,13 +74,7 @@ export const getAllTypes = async () => {
 
 
 
-export const getCommonIds = (...arraysOfPokemonIds) => {
-  // Return the intersection of all the arrays of Pokemon ids
-  return arraysOfPokemonIds.reduce((accumulator, currentArray) => {
-    if (accumulator.length === 0) { //ignore empty arrays
-      return currentArray;
-    } else {
-      return accumulator.filter((element) => currentArray.includes(element));
-    }
-  });
-};
+export const getCommonIds = (arraysObj) => {
+  const arrays = Object.values(arraysObj).filter((arr) => arr.length > 0); //remove empty arrays
+  return arrays.reduce((x, y) => x.filter((z) => y.includes(z)))
+}
