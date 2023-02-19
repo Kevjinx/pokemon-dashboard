@@ -10,6 +10,7 @@ import {
 } from "./getData.mjs";
 import { abilityList } from "./abilityList.mjs";
 import { typeList } from "./typeList.mjs";
+import { parsePokeData } from "./parsePokeData.mjs";
 
 export {
   getPokemonById,
@@ -22,4 +23,5 @@ export {
   getAllTypes,
   abilityList,
   typeList,
+  parsePokeData,
 };
