@@ -1,5 +1,4 @@
 import React, { useState, useEffect,  } from 'react';
-import { Link } from 'react-router-dom';
 import { getPokemonById } from '../data/pokeAPI/index.mjs';
 import Card from './Card';
 
@@ -15,8 +14,10 @@ const DisplaySearch = ({commonIds}) => {
 				})
 			);
 			setPokemon(newPokemon);
+			console.log('setPokemon', newPokemon)
 		};
-		fetchData().catch(console.error);
+		console.log('commonIds', commonIds);
+		commonIds.length > 0 && fetchData().catch(console.error);
 	}, [commonIds]);
 
 	return (

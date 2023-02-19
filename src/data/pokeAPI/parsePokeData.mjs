@@ -1,5 +1,6 @@
 export const parsePokeData = async (data) => {
-  console.log(data)
+  if (!data) return null;
+
   const name = data.name;
   const sprites = data.sprites;
   const stats = data.stats;
@@ -32,15 +33,11 @@ export const parsePokeData = async (data) => {
 	const getEvolutionChain = async () => {
 		const evolutionResponse = await fetch(evolutionUrl);
 		const evolutionData = await evolutionResponse.json();
-		console.log(evolutionData)
 		const evolutionChain = evolutionData.chain.evolves_to.map((evolution) => {
 			return evolution.species.name
 		})
-		console.log(evolutionChain)
 		return evolutionChain
 	}
-
-
 
 	const weaknesses = await getWeaknesses();
 
