@@ -7,8 +7,9 @@ import Dashboard from "./scene/dashboard";
 import Sidebar from "./scene/global/Sidebar";
 import Bar from "./scene/bar";
 import Playground from "./scene/playground";
+import PokemonDashboard from "./scene/pokemonDashboard";
 
-function App() {
+const App = () => {
   const [theme, colorMode] = useMode();
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -25,7 +26,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/playground" element={<Playground />} />
-
+              <Route path="/pokemon/:pokemonId" element={<PokemonDashboard />} />
             </Routes>
           </Box>
         </div>

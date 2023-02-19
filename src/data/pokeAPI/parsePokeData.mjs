@@ -1,8 +1,8 @@
 export const parsePokeData = async (data) => {
   if (!data) return null;
-
+  console.log(data)
   const name = data.name;
-  const sprites = data.sprites;
+  const sprites = data.sprites.other['official-artwork'].front_default;
   const stats = data.stats;
   const types = data.types;
   const weight = data.weight;

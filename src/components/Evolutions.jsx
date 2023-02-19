@@ -16,7 +16,6 @@ const getEvolutions = async (evolutionUrl, evolutions = []) => {
   evolutions.push(data.name);
 
   const evolvesTo = data.chain.evolves_to;
-	console.log(evolvesTo)
 
   if (evolvesTo.length > 0) {
     for (let i = 0; i < evolvesTo.length; i++) {
@@ -27,7 +26,7 @@ const getEvolutions = async (evolutionUrl, evolutions = []) => {
   }
   return evolutions;
 }
-getEvolutions('https://pokeapi.co/api/v2/evolution-chain/10')
+// getEvolutions('https://pokeapi.co/api/v2/evolution-chain/10')
 
 
 
