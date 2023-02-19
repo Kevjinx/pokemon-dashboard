@@ -7,8 +7,8 @@ const StatsRadarChart = (props) => {
     const stats = [];
     Object.keys(statsObj).forEach((key) => {
       stats.push({
-        x: key, // key: hp, attack...
-        y: statsObj[key], // value: stats
+        x: statsObj[key].stat.name, // key: hp, attack...
+        y: statsObj[key].base_stat, // value: stats
       });
     });
     return stats;

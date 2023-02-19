@@ -1,10 +1,8 @@
 export const parsePokeData = async (data) => {
   if (!data) return null;
-  console.log(data)
   const name = data.name;
   const sprites = data.sprites.other['official-artwork'].front_default;
   const stats = data.stats;
-  const types = data.types;
   const weight = data.weight;
   const height = data.height;
   const baseStats = data.stats.map((stat) => {
@@ -20,6 +18,9 @@ export const parsePokeData = async (data) => {
   // Extract the relevant information from the species data object
   const nationalId = speciesData.id;
   const evolutionUrl = speciesData.evolution_chain.url;
+  const abilities = data.abilities.map((ability) => ability.ability.name);
+  const types = data.types.map((type) => type.type.name);
+  console.log(types);
 
 	const getWeaknesses = async () => {
 		const weaknessResponse = await fetch(data.types[0].type.url);
@@ -29,6 +30,9 @@ export const parsePokeData = async (data) => {
 		})
 		return weaknesses
 	}
+	const weaknesses = await getWeaknesses();
+
+
 
 	const getEvolutionChain = async () => {
 		const evolutionResponse = await fetch(evolutionUrl);
@@ -39,7 +43,6 @@ export const parsePokeData = async (data) => {
 		return evolutionChain
 	}
 
-	const weaknesses = await getWeaknesses();
 
 	// const evolutionChain = await getEvolutionChain(evolutionUrl);
 
@@ -54,5 +57,6 @@ export const parsePokeData = async (data) => {
     weaknesses,
     nationalId,
     evolutionUrl,
+    abilities
   };
 }
