@@ -12,7 +12,7 @@ const Register = () => {
     event.preventDefault();
 		const configuration = {
 			method: "post",
-      url: "https://learn-auth-mongodb.herokuapp.com/register",
+      url: "https://pokemon-dashboard-server.herokuapp.com/register",
       data: {
 				email,
         password,
