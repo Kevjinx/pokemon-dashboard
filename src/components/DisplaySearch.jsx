@@ -28,7 +28,7 @@ const DisplaySearch = ({ commonIds }) => {
       <Grid container spacing={2}>
         {/* limiting search to 20 for now, will add pagination or infinite scroll to display all search result */}
         {pokemon.slice(0, 20).map((pokemon) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={pokemon.id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={pokemon.id} >
             <Card pokemon={pokemon} />
           </Grid>
         ))}

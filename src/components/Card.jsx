@@ -10,7 +10,6 @@ const Card = (prop) => {
     const fetchData = async () => {
       const parsedData = await parsePokeData(pokemon);
       setPokemonData(parsedData);
-      console.log(parsedData);
     };
     fetchData();
   }, []);
@@ -34,18 +33,17 @@ const Card = (prop) => {
         <img src={pokemonData.sprites} alt={pokemonData.name} width={"70%"} />
       </div>
       <div className="poke-info">
-
         <h2>{pokemonData.name}</h2>
         <div>
           <strong>Type:</strong>{" "}
-          {pokemonData.types.map((type) => (
-            <span key={type.name}>{type.name} </span>
+          {pokemonData.types.map((type, index) => (
+            <span key={index}>{type.name} </span>
           ))}
         </div>
         <div>
           <strong>Weaknesses:</strong>{" "}
-          {pokemonData.weaknesses.map((weakness) => (
-            <span key={weakness}>{weakness} </span>
+          {pokemonData.weaknesses.map((weakness, index) => (
+            <span key={index}>{weakness} </span>
           ))}
         </div>
       </div>

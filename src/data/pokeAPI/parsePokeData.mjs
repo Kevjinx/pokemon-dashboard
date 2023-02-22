@@ -20,7 +20,6 @@ export const parsePokeData = async (data) => {
   const evolutionUrl = speciesData.evolution_chain.url;
   const abilities = data.abilities.map((ability) => ability.ability.name);
   const types = data.types.map((type) => type.type.name);
-  console.log(types);
 
 	const getWeaknesses = async () => {
 		const weaknessResponse = await fetch(data.types[0].type.url);
