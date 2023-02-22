@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import profilePic from "../../assets/images/cyndaquil.jpg";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -42,7 +43,7 @@ const SidebarComponent = () => {
         "& .ps-menu-root": {
           //!important = need to override the default background color
           backgroundColor: `${colors.primary[400]} !important`,
-          height: '100vh'
+          height: "100vh",
         },
         "& .ps-menu-button": {
           backgroundColor: "transparent",
@@ -127,6 +128,47 @@ const SidebarComponent = () => {
               </Box>
             </Box>
           )}
+
+          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />{" "}
+            <Item
+              title="Playground"
+              to="/playground"
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Login"
+              to="/login"
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Register"
+              to="/register"
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Account"
+              to="/account"
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Search"
+              to="/search"
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+          </Box>
         </Menu>
       </Sidebar>
     </Box>

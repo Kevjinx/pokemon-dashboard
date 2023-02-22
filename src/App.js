@@ -8,6 +8,8 @@ import Sidebar from "./scene/global/Sidebar";
 import Bar from "./scene/bar";
 import Playground from "./scene/playground";
 import PokemonDashboard from "./scene/pokemonDashboard";
+import Account from "./scene/account";
+
 
 const App = () => {
   const [theme, colorMode] = useMode();
@@ -27,6 +29,8 @@ const App = () => {
               <Route path="/bar" element={<Bar />} />
               <Route path="/playground" element={<Playground />} />
               <Route path="/pokemon/:pokemonId" element={<PokemonDashboard />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="*" element={<h1>404</h1>} />
             </Routes>
           </Box>
         </div>
