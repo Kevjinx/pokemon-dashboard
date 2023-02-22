@@ -10,6 +10,7 @@ const Card = (prop) => {
     const fetchData = async () => {
       const parsedData = await parsePokeData(pokemon);
       setPokemonData(parsedData);
+      console.log(parsedData);
     };
     fetchData();
   }, []);
@@ -38,7 +39,7 @@ const Card = (prop) => {
         <div>
           <strong>Type:</strong>{" "}
           {pokemonData.types.map((type) => (
-            <span key={type.type.name}>{type.type.name} </span>
+            <span key={type.name}>{type.name} </span>
           ))}
         </div>
         <div>
