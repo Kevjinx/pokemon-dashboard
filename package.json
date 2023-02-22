@@ -20,7 +20,6 @@
     "chart.js": "^4.2.1",
     "dotenv": "^16.0.3",
     "faker": "^5.5.3",
-    "finnhub": "^1.2.16",
     "pokemontcgsdk": "^2.0.0",
     "querystring-es3": "^0.2.1",
     "react": "^18.2.0",
@@ -35,7 +34,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_OPTIONS=--require ./node_modules.config.js react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
