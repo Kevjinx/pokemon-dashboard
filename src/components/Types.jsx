@@ -2,7 +2,6 @@ import { Typography, Box } from "@mui/material";
 import TypePill from './TypePill';
 
 const Types = ( {types} ) => {
-  console.log(types)
   return (
     <Box>
       <Typography variant="h5">Type</Typography>

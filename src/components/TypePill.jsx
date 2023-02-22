@@ -1,6 +1,5 @@
 const TypePill = ({type}) => {
 
-  console.log(type)
   const hexCode = (type) => {
     const colors = {
       //type and its color hex code

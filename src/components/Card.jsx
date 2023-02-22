@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { parsePokeData } from "../data/pokeAPI";
 
@@ -9,6 +10,7 @@ const Card = (prop) => {
   useEffect(() => {
     const fetchData = async () => {
       const parsedData = await parsePokeData(pokemon);
+      console.log(parsedData)
       setPokemonData(parsedData);
     };
     fetchData();
@@ -30,7 +32,9 @@ const Card = (prop) => {
       }}
     >
       <div>
-        <img src={pokemonData.sprites} alt={pokemonData.name} width={"70%"} />
+        <Link to={`/pokemon/${pokemonData.nationalId}`}>
+          <img src={pokemonData.sprites} alt={pokemonData.name} width={"70%"} />
+        </Link>
       </div>
       <div className="poke-info">
         <h2>{pokemonData.name}</h2>

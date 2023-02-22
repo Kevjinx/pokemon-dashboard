@@ -3,7 +3,6 @@ import TypePill from './TypePill';
 
 
 const Weaknesses = ({ weaknesses }) => {
-	console.log(weaknesses)
   return (
     <Box>
       <Typography variant="h5">Weakness</Typography>
