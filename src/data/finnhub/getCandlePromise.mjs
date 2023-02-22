@@ -8,7 +8,7 @@ import { tickers } from "./tickers.mjs";
 
 const getCandlePromise = (id) => {
   const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-  api_key.apiKey = 'cflqnupr01qjfr8f3k50cflqnupr01qjfr8f3k5g';
+  api_key.apiKey = process.env.FINNHUB_API_KEY;
   const finnhubClient = new finnhub.DefaultApi();
   const pokeIdToTicker = (id) => tickers[id].Symbol;
 
